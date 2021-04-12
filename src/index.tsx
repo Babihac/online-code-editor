@@ -1,17 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "bulmaswatch/superhero/bulmaswatch.min.css";
+import ReactDom from "react-dom";
+import { useState, useEffect, useRef } from "react";
+import CodeEditor from "./components/CodeEditor";
+import Preview from "./components/Preview";
+import bundler from "./components/bundler";
+const App = () => {
+  const [code, setCode] = useState("");
+  const [input, setInput] = useState("");
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  const onClick = async () => {
+    const output = await bundler(input);
+    setCode(output);
+  };
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  return (
+    <div>
+      <CodeEditor
+        initValue="//start coding"
+        onChange={(value) => setInput(value)}
+      />
+      <div>
+        <button onClick={onClick}>Submit</button>
+      </div>
+      <Preview code={code} />
+    </div>
+  );
+};
+
+ReactDom.render(<App />, document.querySelector("#root"));
