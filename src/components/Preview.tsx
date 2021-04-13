@@ -34,7 +34,7 @@ const Preview: FC<PreviewProps> = ({ code }) => {
     iframe.current.srdoc = html;
     setTimeout(() => {
       iframe.current.contentWindow.postMessage(code, "*");
-    }, 100);
+    }, 105);
   }, [code]);
   return (
     <iframe
