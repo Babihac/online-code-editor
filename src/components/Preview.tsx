@@ -32,7 +32,9 @@ const Preview: FC<PreviewProps> = ({ code }) => {
   const iframe = useRef<any>();
   useEffect(() => {
     iframe.current.srdoc = html;
-    iframe.current.contentWindow.postMessage(code, "*");
+    setTimeout(() => {
+      iframe.current.contentWindow.postMessage(code, "*");
+    }, 100);
   }, [code]);
   return (
     <iframe
