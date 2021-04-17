@@ -1,4 +1,3 @@
-import "bulmaswatch/superhero/bulmaswatch.min.css";
 import ReactDom from "react-dom";
 import { useState, useEffect, useRef } from "react";
 import CodeEditor from "../CodeEditor/CodeEditor";
