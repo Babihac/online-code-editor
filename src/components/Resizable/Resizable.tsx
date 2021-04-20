@@ -6,10 +6,11 @@ interface ResizableProps {
 }
 
 const Resizable: FC<ResizableProps> = ({ direction, children }) => {
+  console.log("haha");
   let resizableProps: ResizableBoxProps;
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(innerWidth * 0.75);
 
   useEffect(() => {
     let timer: any;
@@ -21,7 +22,6 @@ const Resizable: FC<ResizableProps> = ({ direction, children }) => {
         setInnerHeight(window.innerHeight);
         setInnerWidth(window.innerWidth);
         if (window.innerWidth * 0.75 < width) {
-          console.log(window.innerWidth, width);
           setWidth((w) => window.innerWidth * 0.75);
         }
       }, 100);
@@ -53,7 +53,7 @@ const Resizable: FC<ResizableProps> = ({ direction, children }) => {
       minConstraints: [Infinity, 35],
       maxConstraints: [Infinity, innerHeight * 0.9],
       resizeHandles: ["s"],
-      height: 30,
+      height: 100,
       width: Infinity,
     };
   }
